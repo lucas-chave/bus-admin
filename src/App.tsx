@@ -1,12 +1,17 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+
 import GlobalStyle from './styles/global';
 
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <GlobalStyle />
-      Olá Mundo
-    </div>
+      <Routes>
+        <Route path="/" element={ <Login />}/>
+      </Routes>
+    </Router>
   );
 }
 
