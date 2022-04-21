@@ -1,16 +1,26 @@
 export interface IClient {
   id?: number;
   full_name: string;
-  cpf: string;
+  type_document: string;
+  document: string;
   birthday: string;
-  license: string;
-  license_expiration_date: string;
+  under_age: string;
   created_at?: string;
   updated_at?: string;
-  status: string;
-  nickname: string;
-  cellphone_one: string;
-  cellphone_two?: string;
+  status: boolean;
+  cellphone: string;
+  address: IAdress;
+}
+
+export interface IAdress {
+  id: number;
+  street: string;
+  district: string;
+  complement: string;
+  city_id: number;
+  client_id: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface IClientState {

@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchClients } from "../../../store/slices/clients/middleware";
-
-import { DashboardPage } from "../../dashboardPage";
 import { ContainerTable } from '../../../styles/Table/styles';
 import { formatDate } from "../../../utils/formatData";
+
+import { DashboardPage } from "../../dashboardPage";
 
 export const Clients = () => {
   const dispatch = useAppDispatch();
@@ -16,20 +16,19 @@ export const Clients = () => {
 
   const navigate = useNavigate();
 
-  const navigateForDetailsDriver = (id: any) => {
-    navigate(`/dashboard/motoristas/detalhes/${String(id)}`);
+  const navigateForDetailsDriver = (id: number) => {
+    navigate(`/dashboard/motoristas/detalhes/${id}`);
   };
 
   const thead = [
     'Nome',
+    'tipo',
     'Documento',
     'Data de nascimento',
     'Celular',
   ];
 
   useEffect(() => {
-    console.log('as');
-    
     dispatch(fetchClients());
   }, []);
 
@@ -50,11 +49,12 @@ export const Clients = () => {
             </thead>
             <tbody>
               {clients && clients.map((client) => (
-                <tr key={client.id} onClick={() => navigateForDetailsDriver(client.id)}>
+                <tr key={client.id} onClick={() => navigateForDetailsDriver(client.id as any)}>
                   <td>{client.full_name}</td>
-                  <td>{client.cpf}</td>
+                  <td>{client.type_document.toLocaleUpperCase()}</td>
+                  <td>{client.document}</td>
                   <td>{formatDate(client.birthday)}</td>
-                  <td>{client.cellphone_one}</td>
+                  <td>{(client.cellphone)}</td>
                 </tr>
               ))}
             </tbody>
