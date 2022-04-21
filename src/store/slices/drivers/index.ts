@@ -7,6 +7,7 @@ import { fetchDrivers } from "./midleware";
 const initialState: IDriverState = {
   drivers: [],
   loading: false,
+  error: "",
 };
 
 const reducers = {
@@ -24,7 +25,13 @@ export const driverSlice = createSlice({
     builder.addCase(fetchDrivers.fulfilled, (state, action: PayloadAction<any>) => ({
        ...state,
        drivers: action.payload,
-    }))
+       error: "",
+    }));
+    builder.addCase(fetchDrivers.rejected, (state, action: PayloadAction<any>) => ({
+      ...state,
+      drivers: null as any,
+      error: action.payload,
+   }));
   }
 });
 

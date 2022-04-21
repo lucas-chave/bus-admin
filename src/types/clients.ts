@@ -1,10 +1,4 @@
-export interface IDriverState {
-  drivers: Array<IDriver>;
-  loading: boolean;
-  error: string
-};
-
-export interface IDriver {
+export interface IClient {
   id?: number;
   full_name: string;
   cpf: string;
@@ -15,6 +9,12 @@ export interface IDriver {
   updated_at?: string;
   status: string;
   nickname: string;
-  cellphone_one?: string;
+  cellphone_one: string;
   cellphone_two?: string;
 }
+
+export interface IClientState {
+  clients: Array<IClient>;
+  loading: boolean;
+  error: string;
+};

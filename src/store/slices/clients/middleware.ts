@@ -1,20 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api, { setUserApi } from "../../../utils/api";
 import { ENDPOINTS } from "../../../config/endpoints";
-import { IDriver } from "../../../types/drivers";
+import {  IClient } from "../../../types/clients";
 import { getAuthTokenUser } from "../../../utils/localStorage";
 import { handleError } from "../../../utils/handleError";
 
-export const fetchDrivers = createAsyncThunk(
-  'drivers/fetch',
+export const fetchClients = createAsyncThunk(
+  'clients/fetch',
   async (_, thunkAPI) => {
     try {
       const token = getAuthTokenUser();
       setUserApi(token);
-      const response = await api.get<IDriver[]>(ENDPOINTS.showDrivers);
+      const response = await api.get<IClient[]>(ENDPOINTS.showClients);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       handleError(error, thunkAPI);
     }
   }
-);
+)
