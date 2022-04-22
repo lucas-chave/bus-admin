@@ -1,9 +1,12 @@
-import { IMaskInput } from "react-imask";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  &:not(:last-child) select {
+    border-bottom: 1px solid black;
+  }
 `;
 
 export const Label = styled.label`
@@ -14,12 +17,13 @@ export const Label = styled.label`
   cursor: pointer;
 `;
 
-export const inputStyles = css`
+export const NativeSelect = styled.select`
   padding: .8em;
   border: 1px solid #bbbbbf;
   margin: 0 5px;
   border-radius: 10px;
   max-width: 600px;
+  background: transparent;
   outline: blue;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -31,12 +35,9 @@ export const inputStyles = css`
   }
 `;
 
-export const Input = styled.input`
-  ${inputStyles}
-`;
+export const Error = styled.p`
+  margin-top: 5px;
 
-export const MaskedInput = styled(IMaskInput)`
-  ${inputStyles}
+  font: 500 11px "Roboto", sans-serif;
+  color: #ff0000;
 `;
-
-export const Error = styled.p``;

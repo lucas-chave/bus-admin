@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { fetchClients } from "./middleware";
+import { fetchCitiesClient, fetchClients } from "./middleware";
 
 import { IClient, IClientState } from "../../../types/clients";
 
 const initialState: IClientState = {
   clients: [],
+  cities: [],
   loading: false,
   error: "",
 };
@@ -31,8 +32,18 @@ export const clientSlice = createSlice({
       ...state,
       clients: null as any,
       error: action.payload
-   }));
-  }
+    }));
+    builder.addCase(fetchCitiesClient.fulfilled, (state, action: PayloadAction<any>) => ({
+      ...state,
+      cities: action.payload,
+      error: "",
+    }));
+    builder.addCase(fetchCitiesClient.rejected, (state, action: PayloadAction<any>) => ({
+      ...state,
+      cities: null as any,
+      error: action.payload
+    }));
+  },
 });
 
 export const { setClients } = clientSlice.actions;

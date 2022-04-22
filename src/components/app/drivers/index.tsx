@@ -28,8 +28,6 @@ export const Drivers = () => {
   ];
 
   useEffect(() => {
-    console.log('as');
-  
     dispatch(fetchDrivers());
   }, []);
 

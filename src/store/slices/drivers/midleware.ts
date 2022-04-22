@@ -18,3 +18,31 @@ export const fetchDrivers = createAsyncThunk(
     }
   }
 );
+
+export const createDriver = createAsyncThunk(
+  'driver/add',
+  async (data: IDriver, thunkApi) => {
+    try {
+      setUserApi(getAuthTokenUser().toString());
+      const { id, ...rest } = data;
+      const response = await api.post<IDriver>(ENDPOINTS.createDriver, rest);
+      return response.data;
+    } catch (error) {
+      handleError(error, thunkApi);
+    }
+  }
+);
+
+export const updateDriver = createAsyncThunk(
+  'driver/update',
+  async (data: any, thunkApi) => {
+    try {
+      setUserApi(getAuthTokenUser().toString());
+      const { id, ...dataDriver } = data;
+      const response = await api.put<IDriver>(ENDPOINTS.updateDriver(id), dataDriver);
+      return response.data
+    } catch (error) {
+      handleError(error, thunkApi);
+    }
+  }
+);

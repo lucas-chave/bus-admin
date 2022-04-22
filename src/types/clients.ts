@@ -25,6 +25,28 @@ export interface IAdress {
 
 export interface IClientState {
   clients: Array<IClient>;
+  cities: Array<ICity>;
   loading: boolean;
   error: string;
 };
+
+export interface ICity {
+  created_at: string,
+  id: number,
+  name: number,
+  updated_at: number,
+};
+
+export interface IClientForm {
+  full_name: string;
+  type_document: string;
+  document: string;
+  birthday: string;
+  under_age: string;
+  status?: boolean;
+  cellphone: string;
+  street: string;
+  district?: string;
+  complement?: string;
+  city_id: number;
+}
