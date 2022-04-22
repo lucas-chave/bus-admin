@@ -49,10 +49,7 @@ export const AddDrivers = () => {
 
   const onSubmit = async (data: IDriver) => {
     try {
-      console.log(data);
-      
       const response: any = lastPathname === 'adicionar' ? await dispatch(createDriver(data)) : await dispatch(updateDriver({ ...data, id: lastPathname}));
-      console.log(response);
 
       if ((response.payload as any)) {
         navigate('/dashboard/motoristas');

@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { Container, Label, NativeSelect, Error } from "./styles";
 
 export interface SelectOption {
-  value: string|number;
+  value: string|number|boolean;
   label: string;
 }
 
@@ -27,8 +27,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
         <option value="" disabled>
           Escolha uma opção
         </option>
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
+        {options.map((option, index) => (
+          <option key={index} value={option.value as any}>
             {option.label}
           </option>
         ))}

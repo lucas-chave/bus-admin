@@ -16,8 +16,8 @@ export const Clients = () => {
 
   const navigate = useNavigate();
 
-  const navigateForDetailsDriver = (id: number) => {
-    navigate(`/dashboard/motoristas/detalhes/${id}`);
+  const navigateForDetailsClient = (id: number) => {
+    navigate(`/dashboard/clientes/detalhes/${id}`);
   };
 
   const thead = [
@@ -49,7 +49,7 @@ export const Clients = () => {
             </thead>
             <tbody>
               {clients && clients.map((client) => (
-                <tr key={client.id} onClick={() => navigateForDetailsDriver(client.id as any)}>
+                <tr key={client.id} onClick={() => navigateForDetailsClient(client.id as any)}>
                   <td>{client.full_name}</td>
                   <td>{client.type_document.toLocaleUpperCase()}</td>
                   <td>{client.document}</td>

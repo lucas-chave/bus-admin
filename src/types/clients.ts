@@ -4,7 +4,7 @@ export interface IClient {
   type_document: string;
   document: string;
   birthday: string;
-  under_age: string;
+  under_age: any;
   created_at?: string;
   updated_at?: string;
   status: boolean;
@@ -42,7 +42,7 @@ export interface IClientForm {
   type_document: string;
   document: string;
   birthday: string;
-  under_age: string;
+  under_age: any;
   status?: boolean;
   cellphone: string;
   street: string;

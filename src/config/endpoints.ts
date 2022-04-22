@@ -6,6 +6,6 @@ export const ENDPOINTS = {
   updateDriver: (id: number) => `/drivers?id=${id}`,
   createClient: '/clients',
   showClients: '/clients/list',
-  updateClient: (id: number) => `/drivers?id=&${id}`,
+  updateClient: (id: number) => `/clients?id=${id}`,
   showCities: '/clients/cities',
 };

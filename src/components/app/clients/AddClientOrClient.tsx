@@ -21,9 +21,9 @@ const DATA_TYPE_DOCUMENT = [
   { label: 'CPF', value: 'cpf' },
 ];
 
-const DATA_UNDER_AGE = [
-  { label: 'Sim', value: 1 },
-  { label: 'Não', value: 0 },
+const DATA_UNDER_AGE: any = [
+  { label: 'Sim', value: true },
+  { label: 'Não', value: false },
 ];
 
 export const AddClientOrClient = () => {
@@ -36,16 +36,22 @@ export const AddClientOrClient = () => {
   const client = clients.find((client) => client.id === Number(location.pathname.split("/")[sizeArrPathname]));
   const lastPathname = location.pathname.split("/")[sizeArrPathname];
 
-  const defaultValues = {
-    // full_name: client?.full_name || "",
-    // document: client?.document || "",
-    // birthday: client?.birthday ? formatDate(client?.birthday || '') : "",
-    // cellphone: client?.cellphone || "",
+  const defaultValues: IClientForm = {
+    full_name: client?.full_name || "",
+    document: client?.document || "",
+    birthday: client?.birthday ? formatDate(client?.birthday || '') : "",
+    cellphone: client?.cellphone || "",
+    city_id: client?.address.city_id || 1,
+    street: client?.address.street || "",
+    type_document: client?.type_document || 'rg',
+    under_age: client?.under_age || true,
+    complement: client?.address.complement || "",
+    district: client?.address?.district || "",
   };
 
   const form = useForm<IClientForm>({
     resolver: yupResolver(schema),
-    // defaultValues
+    defaultValues
   });
 
   const {
@@ -67,7 +73,6 @@ export const AddClientOrClient = () => {
   useEffect(() => {
     dispatch(fetchClients());
     dispatch(fetchCitiesClient());
-    console.log(cities);
   }, []);
 
   return (
@@ -76,6 +81,7 @@ export const AddClientOrClient = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Container>
             <Grid>
+
               <Controller
                 name="full_name"
                 control={form.control}
@@ -127,19 +133,7 @@ export const AddClientOrClient = () => {
                   />
                 )}
               />
-              <Controller
-                name="city_id"
-                control={form.control}
-                render={({ field }) => (
-                  <Select
-                    label="Cidade"
-                    options={transformValueForSelect(cities)}
-                    error={errors.city_id?.message}
-                    {...field}
-                  />
-                )}
-              />
-              <Controller
+               <Controller
                 name="type_document"
                 control={form.control}
                 render={({ field }) => (
@@ -163,6 +157,22 @@ export const AddClientOrClient = () => {
                   />
                 )}
               />
+            </Grid>
+            <Grid>
+
+              <Controller
+                name="city_id"
+                control={form.control}
+                render={({ field }) => (
+                  <Select
+                    label="Cidade"
+                    options={transformValueForSelect(cities)}
+                    error={errors.city_id?.message}
+                    {...field}
+                  />
+                )}
+              />
+             
               <Controller
                 name="district"
                 control={form.control}

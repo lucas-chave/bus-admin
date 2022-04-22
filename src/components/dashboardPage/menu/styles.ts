@@ -4,9 +4,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: #3C63D2;
-  min-width: 260px;
-  max-width: 250px;
+  width: 260px;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
 `;
 
 export const Header = styled.div`
