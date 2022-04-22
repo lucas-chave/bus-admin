@@ -3,10 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-
-  &:not(:last-child) select {
-    border-bottom: 1px solid black;
-  }
 `;
 
 export const Label = styled.label`
