@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Dashboard from './pages/dashboard';
+import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
-import Drivers from './pages/drivers/index';
-import AddDriverOrDriver from './pages/drivers/AddDriverOrDriver';
-import Clients from './pages/clients';
-import AddClientOrClient from './pages/clients/AddClientOrClient';
+import Drivers from './pages/Drivers/index';
+import AddDriverOrDriver from './pages/Drivers/AddDriverOrDriver';
+import Clients from './pages/Clients';
+import AddClientOrClient from './pages/Clients/AddClientOrClient';
+import Bus from './pages/Bus';
 
 import GlobalStyle from './styles/global';
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/clientes" element={<Clients />} />
         <Route path="/dashboard/motoristas" element={<Drivers />} />
+        <Route path="/dashboard/onibus" element={<Bus />} />
         <Route path="/dashboard/clientes/adicionar" element={<AddClientOrClient />} />
         <Route path="/dashboard/motoristas/adicionar" element={<AddDriverOrDriver />} />
         <Route path="/dashboard/clientes/detalhes/:id" element={<AddClientOrClient />} />
