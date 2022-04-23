@@ -8,4 +8,7 @@ export const ENDPOINTS = {
   showClients: '/clients/list',
   updateClient: (id: number) => `/clients?id=${id}`,
   showCities: '/clients/cities',
+  createBus: '/buses',
+  showBus: '/buses/list',
+  updateBus: (id: number) => `/buses?id=${id}`,
 };

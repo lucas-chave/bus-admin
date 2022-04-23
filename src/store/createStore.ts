@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/login';
 import driversReducer from './slices/drivers';
 import clientsReducer from './slices/clients';
+import busReducer from './slices/bus';
 import errorReducer from './slices/errors';
 
 const reducer = {
@@ -10,6 +11,7 @@ const reducer = {
   drivers: driversReducer,
   clients: clientsReducer,
   error: errorReducer,
+  bus: busReducer,
 };
 
 const store = configureStore({
