@@ -45,13 +45,14 @@ export const AddClientOrClient = () => {
   const defaultValues: IClientForm = {
     full_name: client?.full_name || "",
     document: client?.document || "",
+    document1: client?.document || "",
     birthday: client?.birthday ? formatDate(client?.birthday || '') : "",
     cellphone: client?.cellphone || "",
-    city_id: client?.address.city_id || 1,
-    street: client?.address.street || "",
+    city_id: client?.address?.city_id || 1,
+    street: client?.address?.street || "",
     type_document: client?.type_document || 'rg',
     under_age: client?.under_age || true,
-    complement: client?.address.complement || "",
+    complement: client?.address?.complement || "",
     district: client?.address?.district || "",
   };
 
@@ -65,35 +66,29 @@ export const AddClientOrClient = () => {
   } = form;
 
   const typeDocument = form.watch("type_document");
-  const document = form.watch("document");
-
-  useEffect(() => {
-    if (typeDocument === "cpf") {
-      if (!CPF.isValid(document) && validateCpf(document)) {
-        dispatch(setError('O CPF precisa ser válido'));
-      }
-    }
-  }, [document, typeDocument]);
+  const document: any = form.watch("document");
 
   const onSubmit = async (data: any) => {
     try {
-      let response: any;
-      if (CPF.isValid(document)) {
-        response = lastPathname === 'adicionar' ? await dispatch(createClient(data)) : await dispatch(updateClient({ ...data, id: lastPathname}));
+      if (typeDocument === "cpf") {
+        if (!CPF.isValid(document) && validateCpf(document)) {
+          dispatch(setError('O CPF precisa ser válido'));
+          return;
+        }
       }
-      if ((response.payload as any)) {
+      const response = lastPathname === 'adicionar' ? await dispatch(createClient(data)) : await dispatch(updateClient({ ...data, id: lastPathname}));
+      if ((response?.payload as any)) {
         navigate('/dashboard/clientes');
       }
     } catch (error) {
       dispatch(setError('Ocorreu algum erro, por favor tente novamente!'));
-      console.log(error);
     }
   };
 
   useEffect(() => {
     dispatch(fetchClients());
     dispatch(fetchCitiesClient());
-  }, []);
+  }, [dispatch]);
 
   return (
     <DashboardPage title="Adicionar cliente">
@@ -126,19 +121,34 @@ export const AddClientOrClient = () => {
                   />
                 )}
               />
-              <Controller
-                name="document"
-                control={form.control}
-                render={({field}) => (
-                  <Field
-                    label="Documento"
-                    placeholder="documento"
-                    mask={typeDocument === 'cpf' ? "000.000.000-00" : ""}
-                    error={errors.document?.message}
-                    {...field}
-                  />
-                )}
-              />
+              {typeDocument === "cpf" ? (
+                <Controller
+                  name="document"
+                  control={form.control}
+                  render={({field}) => (
+                    <Field
+                      label="Documento"
+                      placeholder="documento"
+                      mask={typeDocument === 'cpf' ? "000.000.000-00" : ""}
+                      error={errors.document?.message}
+                      {...field}
+                    />
+                  )}
+                />
+              ) : (
+                <Controller
+                  name="document1"
+                  control={form.control}
+                  render={({field}) => (
+                    <Field
+                      label="Documento"
+                      placeholder="documento"
+                      error={errors.document?.message}
+                      {...field}
+                    />
+                  )}
+                />
+              )}
               <Controller
                 name="cellphone"
                 control={form.control}

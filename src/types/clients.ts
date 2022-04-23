@@ -40,7 +40,8 @@ export interface ICity {
 export interface IClientForm {
   full_name: string;
   type_document: string;
-  document: string;
+  document?: string;
+  document1?: string;
   birthday: string;
   under_age: any;
   status?: boolean;
