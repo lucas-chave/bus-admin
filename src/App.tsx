@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Dashboard from './pages/dashboard';
@@ -8,9 +10,8 @@ import Clients from './pages/clients';
 import AddClientOrClient from './pages/clients/AddClientOrClient';
 
 import GlobalStyle from './styles/global';
+
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
 import { clearError } from './store/slices/errors';
 
 const App = () => {

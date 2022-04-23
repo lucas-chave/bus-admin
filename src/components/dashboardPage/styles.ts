@@ -7,7 +7,7 @@ export const Container = styled.div`
     width: 250px;
     color: #2d2d2d;
     font-size: 36px;
-    margin: 1em 0 0 1em;
+    margin: 1em 0 1em 1em;
     min-width: 300px;
   }
 

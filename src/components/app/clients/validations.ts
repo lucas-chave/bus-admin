@@ -15,7 +15,6 @@ export const schema = yup.object().shape({
   document: yup
     .string()
     .required("Você precisa digitar o CPF.")
-    .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "CPF deve ter formato 000.000.000-00")
     .test("is-valid-cpf", "O CPF precisa ser válido.", (cpf: any) => CPF.isValid(cpf)),
   type_document: yup.string().required("Você precisa selecionar o tipo do documento"),
   under_age: yup.boolean().required("Você precisa selecionar a maioridade do cliente"),

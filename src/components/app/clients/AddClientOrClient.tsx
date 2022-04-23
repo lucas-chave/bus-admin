@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
+import CPF from "cpf";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
@@ -25,6 +26,11 @@ const DATA_UNDER_AGE: any = [
   { label: 'Sim', value: true },
   { label: 'Não', value: false },
 ];
+
+const validateCpf = (cpf: string) => {
+  const response = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf);
+  return response;
+}
 
 export const AddClientOrClient = () => {
   const dispatch = useAppDispatch();
@@ -58,9 +64,23 @@ export const AddClientOrClient = () => {
     formState: { errors },
   } = form;
 
+  const typeDocument = form.watch("type_document");
+  const document = form.watch("document");
+
+  useEffect(() => {
+    if (typeDocument === "cpf") {
+      if (!CPF.isValid(document) && validateCpf(document)) {
+        dispatch(setError('O CPF precisa ser válido'));
+      }
+    }
+  }, [document, typeDocument]);
+
   const onSubmit = async (data: any) => {
     try {
-      const response: any = lastPathname === 'adicionar' ? await dispatch(createClient(data)) : await dispatch(updateClient({ ...data, id: lastPathname}));
+      let response: any;
+      if (CPF.isValid(document)) {
+        response = lastPathname === 'adicionar' ? await dispatch(createClient(data)) : await dispatch(updateClient({ ...data, id: lastPathname}));
+      }
       if ((response.payload as any)) {
         navigate('/dashboard/clientes');
       }
@@ -95,13 +115,25 @@ export const AddClientOrClient = () => {
                 )}
               />
               <Controller
+                name="type_document"
+                control={form.control}
+                render={({ field }) => (
+                  <Select
+                    label="Tipo do documento"
+                    options={DATA_TYPE_DOCUMENT}
+                    error={errors.type_document?.message}
+                    {...field}
+                  />
+                )}
+              />
+              <Controller
                 name="document"
                 control={form.control}
                 render={({field}) => (
                   <Field
                     label="Documento"
                     placeholder="documento"
-                    mask="000.000.000-00"
+                    mask={typeDocument === 'cpf' ? "000.000.000-00" : ""}
                     error={errors.document?.message}
                     {...field}
                   />
@@ -130,18 +162,6 @@ export const AddClientOrClient = () => {
                     error={errors.birthday?.message}
                     {...field}
                     {...dateMask}
-                  />
-                )}
-              />
-               <Controller
-                name="type_document"
-                control={form.control}
-                render={({ field }) => (
-                  <Select
-                    label="Tipo do documento"
-                    options={DATA_TYPE_DOCUMENT}
-                    error={errors.type_document?.message}
-                    {...field}
                   />
                 )}
               />
