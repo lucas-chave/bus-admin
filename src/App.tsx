@@ -8,10 +8,25 @@ import Clients from './pages/clients';
 import AddClientOrClient from './pages/clients/AddClientOrClient';
 
 import GlobalStyle from './styles/global';
+import { useAppDispatch, useAppSelector } from './store/hooks';
+import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { clearError } from './store/slices/errors';
 
 const App = () => {
+  const { errors } = useAppSelector((state) => state.error);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (errors) {
+      toast.error(errors);
+      dispatch(clearError());
+    }
+  }, [errors]);
+
   return (
     <Router>
+      <Toaster position='top-right' />
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Login />}/>
