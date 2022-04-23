@@ -1,4 +1,4 @@
-import { Drivers as Component } from "../../components/app/drivers";
+import { Drivers as Component } from "../../components/app/Drivers";
 
 const Drivers = () => <Component />;
 

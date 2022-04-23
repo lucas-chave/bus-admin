@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { ContainerTable } from "../../../styles/Table/styles";
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 import { fetchBus } from "../../../store/slices/bus/middleware";
 
 const THEAD = [

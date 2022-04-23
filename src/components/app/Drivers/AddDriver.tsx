@@ -8,7 +8,7 @@ import { fetchDrivers, createDriver, updateDriver } from "../../../store/slices/
 import { IDriver } from "../../../types/drivers";
 import { setError } from "../../../store/slices/errors";
 
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 import { Field } from "../../Field";
 import { Button } from "../../Button";
 

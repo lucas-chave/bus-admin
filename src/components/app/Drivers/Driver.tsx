@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { useAppSelector } from "../../../store/hooks";
 import { IDriver } from "../../../types/drivers";
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 
 export const Driver = () => {
   const [driver, setDriver] = useState<IDriver>();

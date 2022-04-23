@@ -7,7 +7,7 @@ import { fetchClients } from "../../../store/slices/clients/middleware";
 import { ContainerTable } from '../../../styles/Table/styles';
 import { formatDate } from "../../../utils/formatData";
 
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 
 export const Clients = () => {
   const dispatch = useAppDispatch();

@@ -1,4 +1,4 @@
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 
 import {
   Container,

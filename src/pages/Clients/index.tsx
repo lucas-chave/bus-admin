@@ -1,4 +1,4 @@
-import {  Clients as Component } from '../../components/app/clients';
+import {  Clients as Component } from '../../components/app/Clients';
 
 const Clients = () => <Component />;
 

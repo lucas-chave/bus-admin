@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchDrivers } from "../../../store/slices/drivers/midleware";
 
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 import { ContainerTable } from '../../../styles/Table/styles';
 import { formatDate } from "../../../utils/formatData";
 

@@ -1,4 +1,4 @@
-import {  AddClientOrClient as Component } from '../../components/app/clients/AddClientOrClient';
+import {  AddClientOrClient as Component } from '../../components/app/Clients/AddClientOrClient';
 
 const AddClientOrClient = () => <Component />;
 

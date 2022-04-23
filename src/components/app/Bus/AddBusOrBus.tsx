@@ -4,7 +4,7 @@ import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setError } from "../../../store/slices/errors";
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 import { Field } from "../../Field";
 import { Container, Grid } from "./styles";
 import { schema } from "./validations";

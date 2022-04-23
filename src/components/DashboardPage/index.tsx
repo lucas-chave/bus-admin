@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Menu } from './menu';
+import { Menu } from './Menu';
 import {
   Container,
   Header,

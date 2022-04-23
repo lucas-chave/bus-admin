@@ -8,7 +8,7 @@ import { createClient, fetchCitiesClient, fetchClients, updateClient } from "../
 import { setError } from "../../../store/slices/errors";
 import { IClient, IClientForm } from "../../../types/clients";
 import { formatDate } from "../../../utils/formatData";
-import { DashboardPage } from "../../dashboardPage";
+import { DashboardPage } from "../../DashboardPage";
 import { Field } from "../../Field";
 import { dateMask } from "../../../utils/masks";
 import { Container, Grid } from "./styles";

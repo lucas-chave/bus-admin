@@ -1,4 +1,4 @@
-import { Dashboard as Component } from '../../components/app/dashboard';
+import { Dashboard as Component } from '../../components/app/Dashboard';
 
 const Dashboard = () => {
   return <Component />;
