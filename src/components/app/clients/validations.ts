@@ -14,8 +14,7 @@ export const schema = yup.object().shape({
   .matches(/^[\S]+(\s[\S]+)+\s*$/gms, "Digite seu nome completo."),
   document: yup
     .string()
-    .required("Você precisa digitar o CPF.")
-    .test("is-valid-cpf", "O CPF precisa ser válido.", (cpf: any) => CPF.isValid(cpf)),
+    .required("Você precisa digitar o CPF."),
   type_document: yup.string().required("Você precisa selecionar o tipo do documento"),
   under_age: yup.boolean().required("Você precisa selecionar a maioridade do cliente"),
   city_id: yup.number().required("Você precisa selecionar a cidade"),
