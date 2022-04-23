@@ -25,8 +25,11 @@ export const createBus = createAsyncThunk(
   async (data: IBus, thunkApi) => {
     try {
       setUserApi(getAuthTokenUser());
-      const { id, ...rest } = data;
-      const response = await api.post<IBus>(ENDPOINTS.createBus, rest);
+      console.log(data);
+      
+      const response = await api.post<IBus>(ENDPOINTS.createBus, data);
+      console.log(response);
+      
       return response.data;
     } catch (error) {
       handleError(error, thunkApi);

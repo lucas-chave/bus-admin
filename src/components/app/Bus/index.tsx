@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { ContainerTable } from "../../../styles/Table/styles";
 import { DashboardPage } from "../../dashboardPage";
+import { fetchBus } from "../../../store/slices/bus/middleware";
 
 const THEAD = [
   'Modelo',
   'Placa',
   'Banheiro',
+  'Prefixo',
 ];
 
 export const Bus = () => {
@@ -20,11 +22,11 @@ export const Bus = () => {
   const { bus } = useAppSelector((state) => state.bus);
 
   const navigateForDetailsDriver = (id: number) => {
-    navigate(`/dashboard/motoristas/detalhes/${id}`);
+    navigate(`/dashboard/onibus/detalhes/${id}`);
   };
 
   useEffect(() => {
-    // dispatch(fetchBus());
+    dispatch(fetchBus());
   }, []);
 
   return (
@@ -42,9 +44,10 @@ export const Bus = () => {
           <tbody>
               {bus && bus.map((bus) => (
                 <tr key={bus.id} onClick={() => navigateForDetailsDriver(bus.id as any)}>
-                  <td>{bus.model}</td>
+                  <td>{bus.model_description}</td>
                   <td>{bus.plate}</td>
-                  <td>{bus.bathroom === true ? 'Sim' : 'Não'}</td>
+                  <td>{bus.toilet === true ? 'Sim' : 'Não'}</td>
+                  <td>{bus.prefix}</td>
                 </tr>
               ))}
             </tbody>

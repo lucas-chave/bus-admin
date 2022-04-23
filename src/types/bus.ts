@@ -1,12 +1,16 @@
 export interface IBus {
   id?: number;
-  model: string;
+  model_description: string;
   plate: string;
-  bathroom: boolean;
+  toilet: any;
+  number_of_seats: number;
+  year: number;
+  prefix: string;
+  active?: string;
 }
 
 export interface IBusState {
   loading: boolean;
   bus: Array<IBus>;
-  
+
 }

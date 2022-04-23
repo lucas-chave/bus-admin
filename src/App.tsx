@@ -14,6 +14,7 @@ import GlobalStyle from './styles/global';
 
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { clearError } from './store/slices/errors';
+import AddBusOrBus from './pages/Bus/AddBusOrBus';
 
 const App = () => {
   const { errors } = useAppSelector((state) => state.error);
@@ -36,8 +37,10 @@ const App = () => {
         <Route path="/dashboard/clientes" element={<Clients />} />
         <Route path="/dashboard/motoristas" element={<Drivers />} />
         <Route path="/dashboard/onibus" element={<Bus />} />
+        <Route path="/dashboard/onibus/adicionar" element={<AddBusOrBus />} />
         <Route path="/dashboard/clientes/adicionar" element={<AddClientOrClient />} />
         <Route path="/dashboard/motoristas/adicionar" element={<AddDriverOrDriver />} />
+        <Route path="/dashboard/onibus/detalhes/:id" element={<AddBusOrBus />} />
         <Route path="/dashboard/clientes/detalhes/:id" element={<AddClientOrClient />} />
         <Route path="/dashboard/motoristas/detalhes/:id" element={<AddDriverOrDriver />} />
       </Routes>
