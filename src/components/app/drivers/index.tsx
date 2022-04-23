@@ -16,8 +16,8 @@ export const Drivers = () => {
 
   const navigate = useNavigate();
 
-  const navigateForDetailsDriver = (id: any) => {
-    navigate(`/dashboard/motoristas/detalhes/${String(id)}`);
+  const navigateForDetailsDriver = (id: number) => {
+    navigate(`/dashboard/motoristas/detalhes/${id}`);
   };
 
   const thead = [
@@ -28,8 +28,6 @@ export const Drivers = () => {
   ];
 
   useEffect(() => {
-    console.log('as');
-    
     dispatch(fetchDrivers());
   }, []);
 
@@ -50,19 +48,17 @@ export const Drivers = () => {
             </thead>
             <tbody>
               {drivers && drivers.map((driver) => (
-                <>
-                  <tr onClick={() => navigateForDetailsDriver(driver.id)}>
-                    <td>{driver.full_name}</td>
-                    <td>{driver.cpf}</td>
-                    <td>{formatDate(driver.birthday)}</td>
-                    <td>{driver.cellphone_one}</td>
-                  </tr>
-                </>
+                <tr key={driver.id} onClick={() => navigateForDetailsDriver(driver.id as any)}>
+                  <td>{driver.full_name}</td>
+                  <td>{driver.cpf}</td>
+                  <td>{formatDate(driver.birthday)}</td>
+                  <td>{driver.cellphone_one}</td>
+                </tr>
               ))}
             </tbody>
           </table>
         )}
       </ContainerTable>
     </DashboardPage>
-  )
+  );
 }

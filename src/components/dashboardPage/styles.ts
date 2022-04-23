@@ -8,6 +8,7 @@ export const Container = styled.div`
     color: #2d2d2d;
     font-size: 36px;
     margin: 1em 0 1em 1em;
+    min-width: 300px;
   }
 
   .profile {
@@ -24,6 +25,7 @@ export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-left: 260px;
 `;
 
 export const Header = styled.div`

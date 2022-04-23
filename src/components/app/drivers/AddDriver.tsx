@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useLocation, useNavigate } from "react-router";
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { fetchDrivers } from "../../../store/slices/drivers/midleware";
+import { fetchDrivers, createDriver, updateDriver } from "../../../store/slices/drivers/midleware";
 import { IDriver } from "../../../types/drivers";
 import { setError } from "../../../store/slices/errors";
 
@@ -14,8 +14,7 @@ import { Button } from "../../Button";
 
 import { schema } from "./validations";
 import { Container, Grid } from "./styles";
-import { dateMask } from "./masks";
-import { createDriver, updateDriver } from "./middleware";
+import { dateMask } from "../../../utils/masks";
 import { formatDate } from "../../../utils/formatData";
 
 export const AddDrivers = () => {
@@ -50,16 +49,13 @@ export const AddDrivers = () => {
 
   const onSubmit = async (data: IDriver) => {
     try {
-      console.log(data);
-      
       const response: any = lastPathname === 'adicionar' ? await dispatch(createDriver(data)) : await dispatch(updateDriver({ ...data, id: lastPathname}));
-      console.log(response);
 
       if ((response.payload as any)) {
         navigate('/dashboard/motoristas');
       }
     } catch (error) {
-      setError('Ocorreu algum erro, por favor tente novamente!')
+      dispatch(setError('Ocorreu algum erro, por favor tente novamente!'));
       console.log(error);
     }
   };

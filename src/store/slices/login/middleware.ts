@@ -12,8 +12,6 @@ export const login = createAsyncThunk(
     try {
       const auth = { user: { username: credentials.username, password: credentials.password }};
       const response = await api.post<IResponseLogin>(ENDPOINTS.login, auth);
-      console.log(response.data.token);
-      
       setUserApi(response.data.token)
       setAuthTokenUser(response.data.token);
       return response.data;
