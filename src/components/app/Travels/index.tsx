@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchTravels } from "../../../store/slices/travels/middleware";
+import { ContainerTable } from "../../../styles/Table/styles";
 import { Button } from "../../Button";
 import { DashboardPage } from "../../DashboardPage";
 
@@ -14,10 +16,35 @@ export const Travels = () => {
     dispatch(fetchTravels());
   }, [dispatch]);
 
+  const thead = [
+    'Data',
+    'Origem',
+  ];
+
   return (
     <DashboardPage title="Viagens">
-      <Button title="Criar Viajem"/>
-      <div>ola mundo</div>
+     <ContainerTable>
+        <Link to="/dashboard/viagens/adicionar">Criar viajem</Link>
+        {travels && (
+          <table>
+            <thead>
+              {thead.map((title) => (
+                <th>
+                  {title}
+                </th>
+              ))}
+              <tbody>
+                {travels && travels.map((travel) => (
+                  <tr key={travel.id}>
+                    <td>{travel.date}</td>
+                    <td>{travel.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </thead>
+          </table>
+        )}
+      </ContainerTable>
     </DashboardPage>
   )
 };
