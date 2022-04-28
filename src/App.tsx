@@ -9,13 +9,14 @@ import AddDriverOrDriver from './pages/Drivers/AddDriverOrDriver';
 import Clients from './pages/Clients';
 import AddClientOrClient from './pages/Clients/AddClientOrClient';
 import Bus from './pages/Bus';
+import AddBusOrBus from './pages/Bus/AddBusOrBus';
+import Travels from './pages/Travels';
+import AddTravelOrTravel from './pages/Travels/AddTravelOrTravel';
 
 import GlobalStyle from './styles/global';
 
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { clearError } from './store/slices/errors';
-import AddBusOrBus from './pages/Bus/AddBusOrBus';
-import Travels from './pages/Travels';
 
 const App = () => {
   const { errors } = useAppSelector((state) => state.error);
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/dashboard/viagens" element={<Travels />} />
         <Route path="/dashboard/onibus/adicionar" element={<AddBusOrBus />} />
         <Route path="/dashboard/clientes/adicionar" element={<AddClientOrClient />} />
+        <Route path="/dashboard/viagens/adicionar" element={<AddTravelOrTravel />} />
         <Route path="/dashboard/motoristas/adicionar" element={<AddDriverOrDriver />} />
         <Route path="/dashboard/onibus/detalhes/:id" element={<AddBusOrBus />} />
         <Route path="/dashboard/clientes/detalhes/:id" element={<AddClientOrClient />} />
