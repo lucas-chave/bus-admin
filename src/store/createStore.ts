@@ -4,6 +4,7 @@ import authReducer from './slices/login';
 import driversReducer from './slices/drivers';
 import clientsReducer from './slices/clients';
 import busReducer from './slices/bus';
+import travelsReducer from './slices/travels';
 import errorReducer from './slices/errors';
 
 const reducer = {
@@ -12,6 +13,7 @@ const reducer = {
   clients: clientsReducer,
   error: errorReducer,
   bus: busReducer,
+  travels: travelsReducer,
 };
 
 const store = configureStore({

@@ -11,4 +11,7 @@ export const ENDPOINTS = {
   createBus: '/buses',
   showBus: '/buses/list',
   updateBus: (id: number) => `/buses?id=${id}`,
+  createTravel: '/travels',
+  updateTravel: (id: string) => `travels?id=${id}`,
+  showTravels: 'travels/list', 
 };
