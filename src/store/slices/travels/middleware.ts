@@ -28,7 +28,8 @@ export const createTravel = createAsyncThunk(
     try {
       setUserApi(getAuthTokenUser())
       const { id, ...rest } = data;
-      const response = await api.post<ITravel>(ENDPOINTS.createTravel, rest);
+      const travelCreate = { ...rest, status: "open" };
+      const response = await api.post<ITravel>(ENDPOINTS.createTravel, travelCreate);
       return response.data;
     } catch (error) {
       handleError(error, thunkApi);

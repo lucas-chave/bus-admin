@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchTravels } from "../../../store/slices/travels/middleware";
 import { ContainerTable } from "../../../styles/Table/styles";
-import { Button } from "../../Button";
 import { DashboardPage } from "../../DashboardPage";
 
 export const Travels = () => {
