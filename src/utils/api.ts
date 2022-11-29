@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { getAuthTokenUser } from './localStorage';
 
 const api = axios.create({
-  // baseURL: process.env.PUBLIC_END_POINT, 
+  // baseURL: process.env.PUBLIC_END_POINT,
   baseURL: 'http://0.0.0.0:3001',
 });
 
